@@ -1,0 +1,10 @@
+.formContainer {
+  height: 60%;
+  width: 50%;
+  margin-left: 30%;
+}
+.textField {
+  width: 30%;
+  padding: 1%;
+  margin: 2%;
+}

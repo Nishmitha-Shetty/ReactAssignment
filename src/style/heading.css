@@ -1,0 +1,17 @@
+.heading {
+  position: relative;
+  font-size: 50px;
+
+  color: white;
+  font-weight: 600;
+  background-color: #2d98da;
+  text-shadow: 2px 3px black;
+  height: 30vh;
+}
+.mainHeading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
