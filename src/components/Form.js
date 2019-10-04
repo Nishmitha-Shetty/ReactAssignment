@@ -1,92 +1,118 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import InputField from "./InputField";
 import Button from "./Button";
+import Select from "./Select";
 import "../style/Form.css";
 
-import ShowFreeSlots from "./ShowFreeSlots";
 class Form extends Component {
   state = {
-    UserName: "",
-    make: "",
-    model: "",
-    date: "",
-    time: "",
-    showSlotPopUp: false
+    slotOptions: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    newBooking: {
+      userName: "",
+      make: "",
+      model: "",
+      date: "",
+      slot: "",
+      vehicleNo: ""
+    }
   };
 
-  addData = event => {
-    event.preventDefault();
-    const taskObj = {};
+  addData = e => {
+    e.preventDefault();
 
-    taskObj.userName = this.state.UserName;
-    taskObj.make = this.state.make;
-    taskObj.model = this.state.model;
-    taskObj.date = this.state.date;
-    taskObj.time = this.state.time;
+    this.props.getNewBooking(this.state.newBooking);
+  };
+  handleOnClick = e => {
+    const slotValue = e.target.value;
 
-    console.log(taskObj);
-    localStorage.setItem("details", JSON.stringify(taskObj));
-    //event.resset()
+    const booking = { ...this.state.newBooking };
+    booking.slot = slotValue;
+    this.setState({ newBooking: booking });
   };
 
-  handleChange = ({ target }) => {
-    this.setState({ [target.name]: target.value });
+  handleChange = e => {
+    let newBooking = Object.assign({}, this.state.newBooking);
+    newBooking[e.target.name] = e.target.value;
+    this.setState({ newBooking });
   };
 
   render() {
+    // const mainState = this.props.passState;
+    const today = new Date();
+    const dd = today.getDate();
+    const mm = today.getMonth() + 1;
+    const yyyy = today.getFullYear();
+    const minDate = yyyy + "-" + mm + "-" + dd;
+
     return (
-      <form className="formContainer" onSubmit={this.addData}>
-        <InputField
-          className="textField"
-          type="text"
-          placeholder="Name"
-          name="UserName"
-          value={this.state.UserName}
-          onChange={this.handleChange}
-        />
-        <br />
-        <InputField
-          type="text"
-          className="textField"
-          placeholder="Make"
-          name="make"
-          value={this.state.make}
-          onChange={this.handleChange}
-          required
-        />
-        <br />
-        <InputField
-          type="text"
-          className="textField"
-          placeholder="Model"
-          name="model"
-          value={this.state.model}
-          onChange={this.handleChange}
-          required
-        />
-        <br />
-        <InputField
-          type="Date"
-          className="textField"
-          placeholder="date"
-          name="date"
-          value={this.state.date}
-          onChange={this.handleChange}
-        />
-        <br />
-        <InputField
-          className="textField"
-          type="time"
-          placeholder="time"
-          name="time"
-          value={this.state.time}
-          onChange={this.handleChange}
-        />
-        <br />
-        {/* <Button text="select slot" /> */}
-        {/* {this.state.showSlotPopUp ? <ShowFreeSlots /> : null} */}
-        <Button text="Submit" />
-      </form>
+      <div className="mainContainer">
+        <form className="formContainer" onSubmit={this.addData}>
+          <h3 className="book">BOOK A SLOT</h3>
+          <InputField
+            className="textField"
+            type="text"
+            placeholder="Name"
+            name="userName"
+            value={this.state.userName}
+            onChange={this.handleChange}
+          />
+          <br />
+          <InputField
+            type="text"
+            className="textField"
+            placeholder="Make"
+            name="make"
+            value={this.state.make}
+            onChange={this.handleChange}
+            required
+          />
+          <br />
+          <InputField
+            type="text"
+            className="textField"
+            placeholder="Vehicle No"
+            name="vehicleNo"
+            value={this.state.vehicleNo}
+            onChange={this.handleChange}
+            required
+          />
+          <br />
+          <InputField
+            type="text"
+            className="textField"
+            placeholder="Model"
+            name="model"
+            value={this.state.model}
+            onChange={this.handleChange}
+            required
+          />
+          <br />
+          <InputField
+            type="Date"
+            className="textField"
+            placeholder="date"
+            name="date"
+            value={this.state.date}
+            onChange={this.handleChange}
+            mindate={minDate}
+          />
+
+          <br />
+
+          <Select
+            name={"selectSlot"}
+            options={this.state.slotOptions}
+            classname={"selectSlot"}
+            placeholder={"select slot"}
+            onClick={this.handleOnClick}
+          />
+          <Button text="Submit" classname="submitBtn" />
+          <Link to="/">
+            <Button text="Back" classname="submitBtn" />
+          </Link>
+        </form>
+      </div>
     );
   }
 }

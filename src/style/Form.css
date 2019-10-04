@@ -1,10 +1,31 @@
+.mainContainer {
+  text-align: center;
+  position: relative;
+}
+
 .formContainer {
   height: 60%;
   width: 50%;
-  margin-left: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
 }
 .textField {
-  width: 30%;
-  padding: 1%;
+  width: 40%;
+  padding: 2%;
+  margin: 2%;
+}
+.book {
+  text-align: center;
+  font-size: 40px;
+  background-color: #008cba;
+  color: white;
+  text-shadow: 2px 3px black;
+}
+
+.selectSlot {
+  padding: 2%;
   margin: 2%;
 }

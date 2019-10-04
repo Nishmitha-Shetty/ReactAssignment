@@ -4,6 +4,7 @@ const InputField = props => {
   return (
     <input
       type={props.type}
+      min={props.mindate}
       className={props.className}
       name={props.name}
       placeholder={props.placeholder}
