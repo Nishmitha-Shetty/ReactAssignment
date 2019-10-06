@@ -17,7 +17,7 @@ class CurrentBooked extends React.Component {
   }
 
   render() {
-    const showHideClassName = this.props.modalState
+    const showHideClassName = this.props.show
       ? "modal display-block"
       : "modal display-none";
 

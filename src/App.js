@@ -9,7 +9,7 @@ class App extends Component {
     currentParking: [],
     pastParking: []
   };
-  childState = value => {
+  newBooking = value => {
     const slotData = this.state.currentParking;
     var slotPresent = slotData.find(data => {
       return data.date === value.date && data.slot === value.slot;
@@ -60,7 +60,7 @@ class App extends Component {
             <Form
               {...props}
               passState={this.state}
-              getNewBooking={this.childState}
+              getNewBooking={this.newBooking}
             />
           )}
         />

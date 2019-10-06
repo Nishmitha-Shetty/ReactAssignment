@@ -5,7 +5,7 @@
 
 .formContainer {
   height: 60%;
-  width: 50%;
+  width: 80%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -13,7 +13,7 @@
   transform: translate(-50%, -50%);
 }
 .textField {
-  width: 40%;
+  width: 30%;
   padding: 2%;
   margin: 2%;
 }

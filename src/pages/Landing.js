@@ -27,7 +27,7 @@ class Landing extends Component {
         />
         {this.state.showBookingsModal ? (
           <CurrentBooked
-            modalState={this.state.showBookingsModal}
+            show={this.state.showBookingsModal}
             close={this.showCurrentBookings}
             showAlreadyBooked={this.alreadyBooked}
             showPastbooking={this.props.getpastBooking}
